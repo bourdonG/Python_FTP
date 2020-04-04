@@ -12,3 +12,17 @@ iface enp0s8 inet static
 address 192.168.56.3
 netmask 255.255.255.0
 
+Après quelques essais le port cible semble fermé, on installe le package suivant pour utiliser la commande netstat:
+apt install net-tools
+
+Connexions Internet actives (serveurs et établies)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat        PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      457/sshd
+tcp        0     64 192.168.56.2:22         192.168.56.1:58098      ESTABLISHED 500/sshd: guillaume
+tcp        0      0 192.168.56.2:22         192.168.56.1:58131      ESTABLISHED 519/sshd: guillaume
+tcp        0      0 192.168.56.2:22         192.168.56.1:57962      ESTABLISHED 472/sshd: guillaume
+tcp6       0      0 :::22                   :::*                    LISTEN      457/sshd
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           391/dhclient
+
+En effet notre port 21 n'est pas ouvert
+

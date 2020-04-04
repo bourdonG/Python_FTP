@@ -1,0 +1,14 @@
+Dans un premier temps on installe une deuxième machine virtuelle qui fera office de client. La première sera le serveur FTP.
+
+Pour rappel, Debian_1:
+
+iface enp0s8 inet static
+address 192.168.56.2
+netmask 255.255.255.0
+
+On définira l'addresse Ipv4 sur Debian_2 tel que:
+
+iface enp0s8 inet static
+address 192.168.56.3
+netmask 255.255.255.0
+

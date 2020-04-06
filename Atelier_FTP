@@ -26,3 +26,41 @@ udp        0      0 0.0.0.0:68              0.0.0.0:*                           
 
 En effet notre port 21 n'est pas ouvert
 
+Server.py
+
+#!/usr/bin/env python3.8
+
+import socket
+
+HOST = '192.168.56.2'
+PORT = 65432
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    with conn:
+        print('Connection depuis : ', addr)
+        while True:
+            data = conn.recv(1024)
+            if not data:
+                break
+            conn.sendall(data)
+           
+Client.py
+
+#!/usr/bin/env python3.8
+
+import socket
+
+HOST = '192.168.56.2'
+PORT = 65432
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    s.sendall(b'Connecté')
+    data = s.recv(1024)
+
+print('Reçu', repr(data))
+
+
